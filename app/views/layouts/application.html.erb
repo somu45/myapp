@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Telstra</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+
+
+<div class="container-fluid" style="background-color: transparent">
+  <div class="row">
+    <%= render :partial => 'layouts/header' %>
+  </div>
+  <div class="clearfix"></div>
+  <div class="row" style="background-color: #f9f9f9; margin-top: 90px">
+    <div class="container-fluid" style="background-color: transparent">
+      <% if notice %>
+          <p class="alert alert-success fade in"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+          <p class="alert alert-danger fade in"><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <!--<div class="row">-->
+    <!--<%= render :partial => 'layouts/footer' %>-->
+  <!--</div>-->
+</div>
+</body>
+</html>

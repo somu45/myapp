@@ -1,0 +1,27 @@
+<div style="width: 100px;, height: 50px;,overflow: auto;">
+  <table class="table table-bordered table-striped tablesorter" border="0" align="center" valign="top" width="95%">
+    <thead>
+        <tr>
+        <% @data.first.attributes.keys.each{ |label| %>
+          <th>
+            <%= label.upcase.split("_").join(" ")%>
+          </th>
+        <% } %>
+        </tr>
+    </thead>
+    <tbody>
+       <% @data.each{|row| %>
+            <tr>
+            <% row.attributes.each{ |k,v| %>
+              <td>
+                <%= v %>
+              </td>
+            <% } %>
+            </tr>
+        <% } %>
+    </tbody>
+  </table>
+</div>
+<div style="float: right;">
+  <%= paginate @data, :remote => true %>
+</div>

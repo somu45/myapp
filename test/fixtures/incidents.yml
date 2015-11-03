@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  customer: MyString
+  infra: MyString
+  device_name: MyString
+  service_no: MyString
+  domain: MyString
+  management_id: MyString
+  public_ip: 
+  ilo_ip: MyString
+  roles: MyString
+  server_owners: MyString
+  connectivity: MyString
+  location_site: MyString
+  location_rack: MyString
+  vendor: MyString
+  model: MyString
+  os_ios: MyString
+  technology: MyString
+  support_vendor: MyString
+  ram: MyString
+  cpu: MyString
+  cpu_speed: MyString
+  database: MyString
+  database_version: MyString
+  serial_number: MyString
+  type_id: 1
+
+two:
+  customer: MyString
+  infra: MyString
+  device_name: MyString
+  service_no: MyString
+  domain: MyString
+  management_id: MyString
+  public_ip: 
+  ilo_ip: MyString
+  roles: MyString
+  server_owners: MyString
+  connectivity: MyString
+  location_site: MyString
+  location_rack: MyString
+  vendor: MyString
+  model: MyString
+  os_ios: MyString
+  technology: MyString
+  support_vendor: MyString
+  ram: MyString
+  cpu: MyString
+  cpu_speed: MyString
+  database: MyString
+  database_version: MyString
+  serial_number: MyString
+  type_id: 1
