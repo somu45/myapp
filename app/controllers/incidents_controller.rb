@@ -14,6 +14,7 @@ class IncidentsController < ApplicationController
 
   def generate_report
     @data = Incident.where(:technology => params["report_name"]).page(params[:page]).per(10)
+    @error_msg = "No Data Found..!!!" if @data.blank?
   end
 
   def create
