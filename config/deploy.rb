@@ -1,4 +1,4 @@
-set :application, "work"
+set :application, "telstra"
 set :repository, "https://github.com/somu45/myapp.git"
 set :domain, '154.8.5.68' #Your Accelerators public IP address
 set :stage, :production
