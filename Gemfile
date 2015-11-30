@@ -5,8 +5,11 @@ gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
-gem 'mysql2', '~> 0.3.18'
 
+group :development do
+  #gem 'sqlite3'
+  gem 'mysql2', '~> 0.3.18'
+end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.1.1'
@@ -43,9 +46,13 @@ group :development, :test do
 end
 
 group :production, :test do
-  gem 'pg'
-  gem 'rails_12factor'
+  # gem 'pg'
+  # gem 'rails_12factor'
+  gem 'mysql2', '~> 0.3.18'
 end
+
+# Deploy with Capistrano
+ gem 'capistrano'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
