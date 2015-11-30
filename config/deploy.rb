@@ -1,6 +1,7 @@
 set :application, "work"
 set :repository, "https://github.com/somu45/myapp.git"
 set :domain, '154.8.5.68' #Your Accelerators public IP address
+set :stages, %w(production staging)
 
 set :scm, :git
                               # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
