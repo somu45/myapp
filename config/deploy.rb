@@ -25,14 +25,13 @@ server '154.8.5.68', user: 'root', roles: %w{app db} #mysql
 
 after "deploy:restart", "deploy:cleanup"
 
-# If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
-  task :start do ; end
-  task :stop do ; end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-    run "#{try_sudo} chmod -R a+rw #{current_path}/public"
-    run "#{try_sudo} chmod -R a+rw #{current_path}/"
-    run "#{try_sudo} chmod -R a+rw #{current_path}/Gemfile.lock"
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :parallel, wait: 5 do
+      # Your restart mechanism here, for example:
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
   end
-end
+end 
+
