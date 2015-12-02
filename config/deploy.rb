@@ -19,7 +19,14 @@ set :keep_releases, 5
 server '154.8.5.68', user: 'root', roles: %w{web app} #app1
 server '154.8.5.68', user: 'root', roles: %w{app db} #mysql
 
-
+set :password, ask('Server password:', nil)
+ set :ssh_options, {
+    user: "root",
+    forward_agent: true,
+    keys: %w(~/.ssh/id_rsa.pub),
+    auth_methods: %w(publickey password),
+    password: fetch(:password)
+ }
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
