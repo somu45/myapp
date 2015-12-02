@@ -11,6 +11,7 @@ set :deploy_to, "/home/projects/"
 set :user, "root"
 
 set :keep_releases, 5
+set :log_level, :debug
 
 # role :web, domain # Your HTTP server, Apache/etc
 # role :app, domain # This may be the same as your `Web` server
@@ -21,6 +22,7 @@ server '154.8.5.68', user: 'root', roles: %w{app db} #mysql
 
 set :password, ask('Server password:', nil)
  set :ssh_options, {
+ 	verbose: :debug
     user: "root",
     forward_agent: true,
     keys: %w(~/.ssh/id_rsa.pub),
