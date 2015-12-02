@@ -53,6 +53,7 @@ end
 
 # Deploy with Capistrano
  gem 'capistrano'
+ gem 'capistrano-ssh-doctor', '~> 1.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
