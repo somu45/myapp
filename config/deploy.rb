@@ -22,7 +22,7 @@ server '154.8.5.68', user: 'root', roles: %w{app db} #mysql
 
 set :password, ask('Server password:', nil)
  set :ssh_options, {
- 	verbose: :debug
+ 	verbose: :debug,
     user: "root",
     forward_agent: true,
     keys: %w(~/.ssh/id_rsa.pub),
