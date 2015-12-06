@@ -3,6 +3,7 @@ set :repository, "https://github.com/somu45/myapp.git"
 set :domain, '154.8.5.68' #Your Accelerators public IP address
 set :stage, :production
 set :branch, 'master'
+set :use_sudo, false
 
 set :scm, :git
                               # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
