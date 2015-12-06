@@ -17,8 +17,7 @@ set :log_level, :debug
 # role :app, domain # This may be the same as your `Web` server
 # role :db, domain, :primary => true # This is where Rails migrations will run
 
-server '154.8.5.68', user: 'root', roles: %w{web app} #app1
-server '154.8.5.68', user: 'root', roles: %w{app db} #mysql
+server '154.8.5.68', user: 'root', roles: %w{web app db} #app1
 
 set :password, ask('Server password:', nil)
  set :ssh_options, {
