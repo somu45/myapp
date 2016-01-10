@@ -21,7 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -37,6 +37,7 @@ gem 'devise'
 gem 'roo'
 gem 'roo-xls'
 gem 'kaminari'
+gem 'unicorn'
 
 group :development, :test do
   gem 'pry'
@@ -49,11 +50,14 @@ group :production, :test do
   # gem 'pg'
   # gem 'rails_12factor'
   gem 'mysql2', '~> 0.3.18'
+  gem 'capistrano', '2.15.4'
+  gem 'capistrano-ext'
+  gem 'capistrano-rbenv', '1.0.5'
 end
 
 # Deploy with Capistrano
- gem 'capistrano'
- gem 'capistrano-ssh-doctor', '~> 1.0'
+ # gem 'capistrano'
+ # gem 'capistrano-ssh-doctor', '~> 1.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
