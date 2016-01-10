@@ -17,5 +17,5 @@ ssh_options[:auth_methods] = ["publickey"]
 # it is not wise to store amazon key in repository. You need to get it from instance owner and set path to it here
 ssh_options[:keys] = ["/root/.ssh/id_rsa"]
 
-before 'deploy:update', 'unicorn:stop'
+# before 'deploy:update', 'unicorn:stop'
 # before 'deploy:update', 'sidekiq:stop'
