@@ -2,7 +2,7 @@ worker_processes 1
 APP_DIR = "/home/deploy/myapp"
 working_directory APP_DIR + "/current"
 
-listen "/tmp/sockets/unicorn.sock", :backlog => 64
+listen APP_DIR + "/tmp/sockets/unicorn.sock", :backlog => 64
 
 pid APP_DIR + "/current/tmp/pids/unicorn.pid"
 
