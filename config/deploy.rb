@@ -1,46 +1,78 @@
-set :application, "telstra"
-set :repository, "https://github.com/somu45/myapp.git"
-set :domain, '154.8.5.68' #Your Accelerators public IP address
-set :stage, :production
-set :branch, 'master'
+require 'bundler/capistrano'
+require 'capistrano-rbenv'
+require 'capistrano/ext/multistage'
+require 'capistrano/sidekiq'
+require 'capistrano-unicorn'
+
+# stages list. Dont muss up with rails environment. Stage is a settings for capistrano deployment.
+# you may run any stage with: cap production deploy
+set :stages, %w(production)
+# default stage that is going to be run by command cap deploy
+set :default_stage, "production"
+
+set :rbenv_path, '/usr/local/rbenv'
+set :rbenv_ruby_version, '2.1.2'
+
+# if you use rvm set ruby version and rvm gemset
+# set :rvm_ruby_string, "ruby-2.1.2@taxipixi"
+
+set :bundle_gemfile, -> { 'Gemfile' }
+
+# some files that are common to all releases. they'll be simlinked to new release from shared folder
+set :shared_children, shared_children 
+
+# application name
+set :application, "myapp"
+
+# path where capistrano is going to deploy to
+set(:deploy_to) { "/home/#{user}/#{application}" }
+
+# deploy with sudo user access rights (not recommended)
 set :use_sudo, false
 
+# deploy from remote repository
 set :scm, :git
-                              # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :repository,  "git@github.com:somu45/myapp.git"
+set :deploy_via, :remote_cache
 
-set :deploy_to, "/home/projects/"
-set :user, "root"
+# deply from local repository
+#set :scm, :none
+#set :repository, "."
+#set :deploy_via, :copy
 
-set :keep_releases, 5
-set :log_level, :debug
 
-# role :web, domain # Your HTTP server, Apache/etc
-# role :app, domain # This may be the same as your `Web` server
-# role :db, domain, :primary => true # This is where Rails migrations will run
+# sidekiq settings
+#set(:sidekiq_cmd)     { "bundle exec sidekiq -e #{rails_env} -C #{current_path}/config/setting_files/sidekiq.yml" }
+#set(:sidekiqctl_cmd)  { "bundle exec sidekiqctl" }
+#set(:sidekiq_timeout) { 10 }
+#set(:sidekiq_role)    { :app }
+#set(:sidekiq_pid)     { "#{current_path}/tmp/pids/sidekiq.pid" }
+#set(:sidekiq_processes) { 1 }
 
-server '154.8.5.68', user: 'root', roles: %w{web app db} #app1
 
-set :password, ask('Server password:', nil)
- set :ssh_options, {
- 	verbose: :debug,
-    user: "root",
-    forward_agent: true,
-    keys: %w(~/.ssh/id_rsa.pub),
-    auth_methods: %w(publickey password),
-    password: fetch(:password)
- }
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+#before 'deploy', 'monit:stop'
+#before 'sidekiq:restart', 'monit:stop'
 
-after "deploy:restart", "deploy:cleanup"
+after 'deploy:restart', 'deploy:cleanup'
 
-namespace :deploy do
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :parallel, wait: 5 do
-      # Your restart mechanism here, for example:
-      execute :touch, release_path.join('tmp/restart.txt')
+after 'deploy:restart', 'unicorn:stop'    # app IS NOT preloaded
+after 'deploy:restart', 'unicorn:start'   # app preloaded
+after 'deploy:restart', 'unicorn:duplicate'
+
+
+namespace :logs do
+  desc "show rails logs in realtime"
+  task :realtime, :roles => :app do
+    trap("INT") { puts 'Interupted'; exit 0; }
+    run "tail -f #{shared_path}/log/unicorn.stdout.log" do |channel, stream, data|
+      puts "#{channel[:host]}: #{data}"
+      break if stream == :err
     end
   end
-end 
 
+  desc "show rails logs"
+  task :newest, :roles => :app do
+    trap("INT") { puts 'Interupted'; exit 0; }
+    run "tail -50 #{shared_path}/log/unicorn.stdout.log"
+  end
+end
