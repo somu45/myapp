@@ -46,13 +46,15 @@ group :development, :test do
   gem 'pry-byebug'
 end
 
-group :production, :test do
+group :production do
   # gem 'pg'
   # gem 'rails_12factor'
   gem 'mysql2', '~> 0.3.18'
   gem 'capistrano', '2.15.4'
   gem 'capistrano-ext'
   gem 'capistrano-rbenv', '1.0.5'
+  gem 'capistrano-unicorn', :require => false
+  gem 'capistrano-sidekiq', '0.3.0'
 end
 
 # Deploy with Capistrano
