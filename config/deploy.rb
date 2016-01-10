@@ -19,7 +19,7 @@ set :rbenv_ruby_version, '2.1.2'
 set :bundle_gemfile, -> { 'Gemfile' }
 
 # some files that are common to all releases. they'll be simlinked to new release from shared folder
-set :shared_children, shared_children 
+set :shared_children, shared_children + %w(/tmp)
 
 # application name
 set :application, "myapp"
