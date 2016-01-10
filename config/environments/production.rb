@@ -28,10 +28,11 @@ Myapp::Application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
-  config.assets.precompile += %w(application.js application.css)
 
   # Generate digests for assets URLs.
   config.assets.digest = true
+  
+  config.assets.precompile += %w(application.js application.css)
 
   # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
