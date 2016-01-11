@@ -1,6 +1,6 @@
 <%if @data.present?%>
-<div style="width: 100px;, height: 50px;,overflow: auto;">
-  <table class="table table-bordered table-striped tablesorter" border="0" align="center" valign="top" width="95%">
+<div  style="width: 100%;overflow: auto">
+  <table id="reports_table" width="95%" border="0" align="center" valign="top" class="table table-bordered table-striped tablesorter">
     <thead>
         <tr>
         <% @data.first.attributes.keys.each{ |label| %>
@@ -31,3 +31,12 @@
   <p class="alert alert-danger fade in"><%= @error_msg %></p>
 </div>
 <%end%>
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+    $("#reports_table").DataTable({
+        "paging":   false
+    });
+</script>

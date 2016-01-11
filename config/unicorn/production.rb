@@ -3,6 +3,7 @@ APP_DIR = "/home/deploy/myapp"
 working_directory APP_DIR + "/current"
 
 #listen APP_DIR + "/current/tmp/sockets/unicorn.sock", :backlog => 64
+
 listen 4567, :tcp_nopush => true
 
 pid APP_DIR + "/current/tmp/pids/unicorn.pid"

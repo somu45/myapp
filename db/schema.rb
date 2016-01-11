@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101110521) do
+ActiveRecord::Schema.define(version: 20151129125638) do
+
+  create_table "ageings", force: true do |t|
+    t.string   "ageing"
+    t.integer  "incident"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "uploaded_at"
+  end
+
+  create_table "change_details", force: true do |t|
+    t.integer  "created"
+    t.integer  "closed"
+    t.date     "operating_date"
+    t.date     "uploaded_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "incident_backlogs", force: true do |t|
+    t.integer  "p1"
+    t.integer  "p2"
+    t.integer  "p3"
+    t.integer  "p4"
+    t.integer  "total"
+    t.date     "operating_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "uploaded_at"
+  end
 
   create_table "incidents", force: true do |t|
     t.string   "customer"
@@ -39,6 +68,82 @@ ActiveRecord::Schema.define(version: 20151101110521) do
     t.string   "database_version"
     t.string   "serial_number"
     t.integer  "type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "uploaded_at"
+  end
+
+  create_table "inflow_vs_closures", force: true do |t|
+    t.integer  "created"
+    t.integer  "closed"
+    t.date     "operating_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "uploaded_at"
+  end
+
+  create_table "other_backlogs", force: true do |t|
+    t.integer  "backlogs"
+    t.date     "operating_date"
+    t.date     "uploaded_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "others", force: true do |t|
+    t.integer  "created"
+    t.integer  "closed"
+    t.date     "operating_date"
+    t.date     "uploaded_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "problem_ticket_aegings", force: true do |t|
+    t.string   "days"
+    t.integer  "number"
+    t.date     "uploaded_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "problem_tickets", force: true do |t|
+    t.integer  "created"
+    t.integer  "closed"
+    t.date     "operating_date"
+    t.date     "uploaded_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sla_compliances", force: true do |t|
+    t.integer  "target_sla"
+    t.integer  "adjusted_sla"
+    t.integer  "unadjusted_sla"
+    t.date     "operating_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "uploaded_at"
+  end
+
+  create_table "status_for_open_tickets", force: true do |t|
+    t.integer  "assigned"
+    t.integer  "awaiting_change"
+    t.integer  "monitor"
+    t.integer  "pending_customer"
+    t.integer  "pending_supplier"
+    t.integer  "pending_telstra"
+    t.integer  "update_received"
+    t.integer  "work_in_progress"
+    t.date     "uploaded_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "unsuccessful_changes", force: true do |t|
+    t.integer  "unsuccessful_changes"
+    t.date     "operating_date"
+    t.date     "uploaded_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

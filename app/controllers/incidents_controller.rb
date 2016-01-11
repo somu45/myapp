@@ -19,8 +19,12 @@ class IncidentsController < ApplicationController
 
   def create
     if params[:incident][:file].present?
-      Incident.import(params[:incident][:file])
-      @success_msg = "File uploaded successfully."
+      response = Incident.import(params[:incident][:file])
+      if response[:error].blank?
+        @success_msg = "File uploaded successfully."
+      else
+        @error_msg = response[:error]
+      end
     else
       @error_msg = "Please Choose a File"
     end
