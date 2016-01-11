@@ -1,5 +1,5 @@
 class CreateIncidents < ActiveRecord::Migration
-  def change
+  def up
     create_table :incidents do |t|
       t.string :customer
       t.string :infra
@@ -29,5 +29,9 @@ class CreateIncidents < ActiveRecord::Migration
 
       t.timestamps
     end
+  end
+
+  def down
+    drop_table :incidents
   end
 end
